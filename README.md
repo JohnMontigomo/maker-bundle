@@ -4,6 +4,8 @@ The Symfony MakerBundle
 This fork of Symfony Maker helps you create empty commands, controllers, form classes, 
 tests and more so you can forget about writing boilerplate code with flexible architecture configuration.
 
+composer require --dev john-montigomo/symfony-maker-bundle
+
 The MakerBundle is the fastest way to generate the most common code you'll
 need in a Symfony app: commands, controllers, form classes, event subscribers
 and more!
