@@ -133,7 +133,7 @@ final class MakeRegistrationForm extends AbstractMaker
         $this->userClass = $interactiveSecurityHelper->guessUserClass(
             $io,
             $providersData,
-            'Enter the User class that you want to create during registration (e.g. <fg=yellow>App\\Entity\\User</>)'
+            'Enter the User class that you want to create during registration (e.g. <fg=yellow>App\\Domain\\Entity\\User</>)'
         );
         $io->text(\sprintf('Creating a registration form for <info>%s</info>', $this->userClass));
 
@@ -215,7 +215,7 @@ final class MakeRegistrationForm extends AbstractMaker
     {
         $userClassNameDetails = $generator->createClassNameDetails(
             '\\'.$this->userClass,
-            'Entity\\'
+            $generator->entity
         );
 
         $userDoctrineDetails = $this->doctrineHelper->createDoctrineDetails($userClassNameDetails->getFullName());
@@ -229,7 +229,7 @@ final class MakeRegistrationForm extends AbstractMaker
         $userRepository = $userDoctrineDetails->getRepositoryClass();
 
         if (null !== $userRepository) {
-            $userRepoClassDetails = $generator->createClassNameDetails('\\'.$userRepository, 'Repository\\', 'Repository');
+            $userRepoClassDetails = $generator->createClassNameDetails('\\'.$userRepository, $generator->repository, 'Repository');
 
             $userRepoVars = [
                 'repository_full_class_name' => $userRepoClassDetails->getFullName(),
@@ -240,7 +240,7 @@ final class MakeRegistrationForm extends AbstractMaker
 
         $verifyEmailServiceClassNameDetails = $generator->createClassNameDetails(
             'EmailVerifier',
-            'Security\\'
+            $generator->security
         );
 
         $verifyEmailVars = ['will_verify_email' => $this->willVerifyEmail];
@@ -549,7 +549,7 @@ final class MakeRegistrationForm extends AbstractMaker
     {
         $formClassDetails = $generator->createClassNameDetails(
             'RegistrationForm',
-            'Form\\'
+            $generator->form
         );
 
         $formFields = [

@@ -33,6 +33,21 @@ class Generator
         private string $namespacePrefix,
         ?PhpCompatUtil $phpCompatUtil = null,
         private ?TemplateComponentGenerator $templateComponentGenerator = null,
+
+        public string $entity,
+        public string $repository,
+        public bool   $abstarctRepository,
+        public string $entityInterface,
+        public string $service,
+        public string $entityRepositoryInterface,
+        public string $commonFactory,
+
+        public string $command,
+        public string $form,
+        public string $validator,
+        public string $listener,
+        public string $subscriber,
+        public string $security,
     ) {
         $this->twigHelper = new GeneratorTwigHelper($fileManager);
         $this->namespacePrefix = trim($namespacePrefix, '\\');

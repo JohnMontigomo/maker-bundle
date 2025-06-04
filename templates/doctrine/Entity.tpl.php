@@ -18,7 +18,8 @@ namespace <?= $namespace ?>;
 <?php if ($broadcast): ?>
 #[Broadcast]
 <?php endif ?>
-class <?= $class_name."\n" ?>
+class <?= $class_name ?> <?php if ($entity_interface): ?> implements  <?= $entity_interface ?> <?php endif ?>
+<?=  "\n"  ?>
 {
 <?php if (EntityIdTypeEnum::UUID === $id_type): ?>
     #[ORM\Id]
@@ -31,6 +32,11 @@ class <?= $class_name."\n" ?>
     {
         return $this->id;
     }
+
+    public function setId(int $Uuid): void
+    {
+        $this->id = $Uuid;
+    }
 <?php elseif (EntityIdTypeEnum::ULID === $id_type): ?>
     #[ORM\Id]
     #[ORM\Column(type: UlidType::NAME, unique: true)]
@@ -42,15 +48,25 @@ class <?= $class_name."\n" ?>
     {
         return $this->id;
     }
+
+    public function setId(int $Ulid): void
+    {
+        $this->id = $Ulid;
+    }   
 <?php else: ?>
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    public function getId(): ?int
+    public function getId(): int
     {
         return $this->id;
+    }
+
+    public function setId(int $id): void
+    {
+        $this->id = $id;
     }
 <?php endif ?>
 }

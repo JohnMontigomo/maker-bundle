@@ -142,7 +142,7 @@ final class MakeEntity extends AbstractMaker implements InputAwareMakerInterface
         if (
             !$input->getOption('api-resource')
             && class_exists(ApiResource::class)
-            && !class_exists($this->generator->createClassNameDetails($entityClassName, 'Entity\\')->getFullName())
+            && !class_exists($this->generator->createClassNameDetails($entityClassName, $this->generator->entity)->getFullName())
         ) {
             $description = $command->getDefinition()->getOption('api-resource')->getDescription();
             $question = new ConfirmationQuestion($description, false);
@@ -154,7 +154,7 @@ final class MakeEntity extends AbstractMaker implements InputAwareMakerInterface
         if (
             !$input->getOption('broadcast')
             && class_exists(Broadcast::class)
-            && !class_exists($this->generator->createClassNameDetails($entityClassName, 'Entity\\')->getFullName())
+            && !class_exists($this->generator->createClassNameDetails($entityClassName, $this->generator->entity)->getFullName())
         ) {
             $description = $command->getDefinition()->getOption('broadcast')->getDescription();
             $question = new ConfirmationQuestion($description, false);
@@ -183,7 +183,7 @@ final class MakeEntity extends AbstractMaker implements InputAwareMakerInterface
 
         $entityClassDetails = $generator->createClassNameDetails(
             $input->getArgument('name'),
-            'Entity\\'
+            $this->generator->entity
         );
 
         $classExists = class_exists($entityClassDetails->getFullName());

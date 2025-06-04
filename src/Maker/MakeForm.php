@@ -79,22 +79,24 @@ final class MakeForm extends AbstractMaker
     {
         $formClassNameDetails = $generator->createClassNameDetails(
             $input->getArgument('name'),
-            'Form\\',
+            $generator->form,
             'Form'
         );
 
         $formFields = ['field_name' => null];
 
         $boundClass = $input->getArgument('bound-class');
+
         $boundClassDetails = null;
 
         if (null !== $boundClass) {
             $boundClassDetails = $generator->createClassNameDetails(
                 $boundClass,
-                'Entity\\'
+                $generator->entity
             );
 
             $doctrineEntityDetails = $this->entityHelper->createDoctrineDetails($boundClassDetails->getFullName());
+
 
             if (null !== $doctrineEntityDetails) {
                 $formFields = $doctrineEntityDetails->getFormFields();

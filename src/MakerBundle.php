@@ -35,6 +35,21 @@ class MakerBundle extends AbstractBundle
                 ->scalarNode('root_namespace')->defaultValue('App')->end()
                 ->booleanNode('generate_final_classes')->defaultTrue()->end()
                 ->booleanNode('generate_final_entities')->defaultFalse()->end()
+
+                ->stringNode('entity')->defaultValue('Entity\\')->end()
+                ->stringNode('repository')->defaultValue('Repository\\')->end()
+                ->booleanNode('abstract_repository')->defaultFalse()->end()
+                ->stringNode('entity_interface')->defaultValue('Entity\\')->end()
+                ->stringNode('service')->defaultValue('Service\\')->end()
+                ->stringNode('entity_repository_interface')->defaultValue('')->end()
+                ->stringNode('common_factory')->defaultValue('')->end()
+
+                ->stringNode('command')->defaultValue('Command\\')->end()
+                ->stringNode('form')->defaultValue('Form\\')->end()
+                ->stringNode('validator')->defaultValue('Validator\\')->end()
+                ->stringNode('listener')->defaultValue('Listener\\')->end()
+                ->stringNode('subscriber')->defaultValue('Subscriber\\')->end()
+                ->stringNode('security')->defaultValue('Security\\')->end()
             ->end()
         ;
     }
@@ -51,12 +66,29 @@ class MakerBundle extends AbstractBundle
                 ->arg(0, $rootNamespace)
             ->get('maker.generator')
                 ->arg(1, $rootNamespace)
+            
+                ->arg(4, $config['entity'])
+                ->arg(5, $config['repository'])
+                ->arg(6, $config['abstract_repository'])
+                ->arg(7, $config['entity_interface'])
+                ->arg(8, $config['service'])
+                ->arg(9, $config['entity_repository_interface'])
+                ->arg(10, $config['common_factory'])
+
+                ->arg(11, $config['command'])
+                ->arg(12, $config['form'])
+                ->arg(13, $config['validator'])
+                ->arg(14, $config['listener'])
+                ->arg(15, $config['subscriber'])
+                ->arg(16, $config['security'])
+            
             ->get('maker.doctrine_helper')
                 ->arg(0, \sprintf('%s\\Entity', $rootNamespace))
             ->get('maker.template_component_generator')
                 ->arg(0, $config['generate_final_classes'])
                 ->arg(1, $config['generate_final_entities'])
                 ->arg(2, $rootNamespace)
+
         ;
 
         $builder
