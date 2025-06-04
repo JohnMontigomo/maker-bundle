@@ -12,6 +12,7 @@ Congig\Packages\Maker.yaml
 -------------------------- 
 
 maker:
+
     root_namespace:              App'
     generate_final_classes:      true
     generate_final_entities:     false
