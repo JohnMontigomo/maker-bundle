@@ -8,7 +8,7 @@ The MakerBundle is the fastest way to generate the most common code you'll
 need in a Symfony app: commands, controllers, form classes, event subscribers
 and more!
 
-Congig\Packages\Maker.yaml
+Config\Packages\Maker.yaml
 -------------------------- 
 
 maker:
