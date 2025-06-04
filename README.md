@@ -12,9 +12,9 @@ Congig\Packages\Maker.yaml
 -------------------------- 
 
 maker:
-    root_namespace: 'App'
-    generate_final_classes: true
-    generate_final_entities: false
+    root_namespace:              App'
+    generate_final_classes:      true
+    generate_final_entities:     false
 
     entity:                      'Domain\Entity\'                # default = App\Entity
     repository:                  'Infrastructure\Repository\'    # default = App\Repository
